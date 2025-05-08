@@ -14,6 +14,14 @@ async function bootstrap() {
     .setTitle('Learning Community Platform API')
     .setDescription('API documentation')
     .setVersion('1.0')
+    .addBearerAuth({
+      type: 'http',
+      scheme: 'bearer',
+      bearerFormat: 'JWT',
+      name: 'Authorization',
+      description: 'Nhập token vào đây',
+      in: 'header',
+    })
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api-docs', app, document);
