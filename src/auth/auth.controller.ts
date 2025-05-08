@@ -47,7 +47,7 @@ export class AuthController {
     @Body('password') password: string,
   ) {
     await this.authService.register(email, password);
-    return { message: 'User created' };
+    return null;
   }
 
   @Post('login')
@@ -102,8 +102,8 @@ export class AuthController {
   async getMe(@Req() req) {
     const user = await this.userService.findByEmail(req.user.email);
     if (!user) {
-      return { error_code: 400, message: 'User not found' };
+      throw new BadRequestException('User not found');
     }
-    return { error_code: 0, message: 'Success', data: { email: user.email } };
+    return { email: user.email };
   }
 }

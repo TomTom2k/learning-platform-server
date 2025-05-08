@@ -2,11 +2,13 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { ResponseExceptionFilter } from './common/response-exception.filter';
+import { ResponseInterceptor } from './common/response.interceptor';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   app.useGlobalFilters(new ResponseExceptionFilter());
+  app.useGlobalInterceptors(new ResponseInterceptor());
 
   const config = new DocumentBuilder()
     .setTitle('Learning Community Platform API')
