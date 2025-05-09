@@ -13,6 +13,12 @@ export class UserService {
   }
 
   async findByEmail(email: string): Promise<User | null> {
-    return this.userModel.findOne({ email }).exec();
+    return this.userModel
+      .findOne({ email })
+      .exec()
+      .then((user) => {
+        if (!user) return null;
+        return user.toObject();
+      });
   }
 }

@@ -10,7 +10,7 @@ import { ConfigModule } from '@nestjs/config';
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
     MongooseModule.forRoot(
-      process.env.MONGO_URI || 'mongodb://localhost:27017/learningplatform',
+      'mongodb+srv://ngthanhtin68:NSjC7YbR8ZKfxuNT@learningplatform.pf7fj7g.mongodb.net/',
       {
         dbName: 'learningplatform',
       },

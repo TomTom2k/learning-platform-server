@@ -76,6 +76,7 @@ export class AuthController {
     @Body('password') password: string,
   ) {
     const user = await this.authService.validateUser(email, password);
+    console.log(user);
     if (!user) throw new BadRequestException('Invalid credentials');
     return this.authService.login(user);
   }
